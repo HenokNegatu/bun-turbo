@@ -7,13 +7,15 @@ type Props = Omit<ImageProps, "src"> & {
   srcDark: string;
 };
 
-const ThemeImage = (props: Props) => {
+const ThemeImage = async (props: Props) => {
   const { srcLight, srcDark, ...rest } = props;
+  const data = await fetch("http://localhost:3001")
 
   return (
     <>
       <Image {...rest} src={srcLight} className="imgLight" />
       <Image {...rest} src={srcDark} className="imgDark" />
+      <p>{data.text()}</p>
     </>
   );
 };
